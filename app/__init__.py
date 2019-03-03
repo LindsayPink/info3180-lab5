@@ -13,6 +13,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+login_manager.login_message = u"Please log in to access this page."
+login_manager.login_message_category = "info"
 
 app.config.from_object(__name__)
 from app import views
