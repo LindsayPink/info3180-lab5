@@ -28,6 +28,10 @@ def about():
     """Render the website's about page."""
     return render_template('about.html')
 
+@app.route('/secure-page')
+@login_required
+def secure_page():
+    return render_template('secure_page.html')
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -46,7 +50,6 @@ def login():
                 login_user(user)
 
                 flash('Log in successful.', 'success')
-                next_page = request.args.get('next')
                 return redirect(url_for("secure_page"))
             else:
                 flash('Username or Password is incorrect.', 'danger')
